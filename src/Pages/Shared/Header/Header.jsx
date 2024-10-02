@@ -3,25 +3,25 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const navlinks = (
     <>
-      <Link>
+      <Link to="/">
         <li className="p-3 mr-2 font-bold text-base">Home</li>
       </Link>
-      <Link>
+      <Link to="/contactUs">
         <li className="p-3 mr-2 font-bold text-base">Contact us</li>
       </Link>
-      <Link>
+      <Link to="/dashboard">
         <li className="p-3 mr-2 font-bold text-base">Dashboard</li>
       </Link>
-      <Link>
+      <Link to="/ourMenu">
         <li className="p-3 mr-2 font-bold text-base">Our Menu</li>
       </Link>
-      <Link>
+      <Link to="/ourShop">
         <li className="p-3 mr-2 font-bold text-base">Our shop</li>
       </Link>
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar max-w-6xl fixed z-50 opacity-30 bg-black text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,7 +47,7 @@ const Header = () => {
             {navlinks}
           </ul>
         </div>
-        <Link>
+        <Link to="/">
           <button className="btn btn-ghost text-xl">Bistro Boss</button>
         </Link>
       </div>
@@ -56,7 +56,9 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         <Link>
-          <button className="btn btn-outline text-xl">Register</button>
+          <button className="btn text-black bg-white text-xl">
+            Register
+          </button>
         </Link>
       </div>
     </div>
