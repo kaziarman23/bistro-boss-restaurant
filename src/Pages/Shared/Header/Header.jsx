@@ -18,6 +18,9 @@ const Header = () => {
       <li className="p-2 font-bold text-base">
         <Link to="/shop/salad">our shop</Link>
       </li>
+      <li className="p-2 font-bold text-base">
+        <Link to="/login">Login</Link>
+      </li>
     </>
   );
   return (
