@@ -3,21 +3,21 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const navlinks = (
     <>
-      <Link to="/">
-        <li className="p-3 mr-2 font-bold text-base">Home</li>
-      </Link>
-      <Link to="/contactUs">
-        <li className="p-3 mr-2 font-bold text-base">Contact us</li>
-      </Link>
-      <Link to="/dashboard">
-        <li className="p-3 mr-2 font-bold text-base">Dashboard</li>
-      </Link>
-      <Link to="/ourMenu">
-        <li className="p-3 mr-2 font-bold text-base">Our Menu</li>
-      </Link>
-      <Link to="/ourShop">
-        <li className="p-3 mr-2 font-bold text-base">Our shop</li>
-      </Link>
+      <li className="p-2 font-bold text-base">
+        <Link to="/">Home</Link>
+      </li>
+      <li className="p-2 font-bold text-base">
+        <Link to="/contactus">Contact us</Link>
+      </li>
+      <li className="p-2 font-bold text-base">
+        <Link to="/dashboard">Dashboard</Link>
+      </li>
+      <li className="p-2 font-bold text-base">
+        <Link to="/menu">our Menu</Link>
+      </li>
+      <li className="p-2 font-bold text-base">
+        <Link to="/shop">our shop</Link>
+      </li>
     </>
   );
   return (
@@ -56,9 +56,7 @@ const Header = () => {
       </div>
       <div className="navbar-end">
         <Link>
-          <button className="btn text-black bg-white text-xl">
-            Register
-          </button>
+          <button className="btn text-black bg-white text-xl">Register</button>
         </Link>
       </div>
     </div>
