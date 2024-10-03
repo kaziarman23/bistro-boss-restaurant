@@ -6,17 +6,17 @@ const Header = () => {
       <li className="p-2 font-bold text-base">
         <Link to="/">Home</Link>
       </li>
-      <li className="p-2 font-bold text-base">
+      {/* <li className="p-2 font-bold text-base">
         <Link to="/contactus">Contact us</Link>
       </li>
       <li className="p-2 font-bold text-base">
         <Link to="/dashboard">Dashboard</Link>
-      </li>
+      </li> */}
       <li className="p-2 font-bold text-base">
         <Link to="/menu">our Menu</Link>
       </li>
       <li className="p-2 font-bold text-base">
-        <Link to="/shop">our shop</Link>
+        <Link to="/shop/salad">our shop</Link>
       </li>
     </>
   );

@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+
+
 const UseBorderBottomBtn = ({
   children,
   borderBColor,

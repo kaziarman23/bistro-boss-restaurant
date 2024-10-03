@@ -27,13 +27,13 @@ const Menu = () => {
       <UseMenuCetagory items={offerdItems} />
 
       {/* dessert items */}
-      <UseMenuCetagory items={dessert} title="Dessert" img={dessertImg} />
+      <UseMenuCetagory items={dessert} title="dessert" img={dessertImg} />
       {/* pizza items */}
-      <UseMenuCetagory items={pizza} title="Pizza" img={pizzaImg} />
+      <UseMenuCetagory items={pizza} title="pizza" img={pizzaImg} />
       {/* dessert items */}
-      <UseMenuCetagory items={salad} title="Salad" img={saladImg} />
+      <UseMenuCetagory items={salad} title="salad" img={saladImg} />
       {/* dessert items */}
-      <UseMenuCetagory items={soup} title="Soup" img={soupImg} />
+      <UseMenuCetagory items={soup} title="soup" img={soupImg} />
     </>
   );
 };

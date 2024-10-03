@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import { Parallax } from "react-parallax";
 
 const Cover = ({ img, title }) => {
@@ -6,6 +8,7 @@ const Cover = ({ img, title }) => {
       blur={{ min: -20, max: 20 }}
       bgImage={img}
       bgImageAlt={title}
+      bgImageSize="cover"
       strength={-200}
     >
       <div className="hero h-[500px]">

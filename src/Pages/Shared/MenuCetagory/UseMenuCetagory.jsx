@@ -16,7 +16,7 @@ const UseMenuCetagory = ({ items, title, img }) => {
           ))}
         </div>
         <div className="flex justify-center items-center">
-          <Link to="/menu">
+          <Link to={`/shop/${title}`}>
             <UseBorderBottomBtn>ORDER YOUR FAVOURITE FOOD</UseBorderBottomBtn>
           </Link>
         </div>
