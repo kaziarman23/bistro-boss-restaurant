@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import authinticationBg from "../../assets/others/authentication.png";
-import authintication from "../../assets/others/authentication2.png";
+import { useContext, useEffect, useState } from "react";
+import authinticationBg from "../../../assets/others/authentication.png";
+import authintication from "../../../assets/others/authentication2.png";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,14 +15,24 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const [capchat, setCapchat] = useState("");
 
+  const { loginUser } = useContext(AuthContext);
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const details = { email, password };
-    console.log(details);
+
+    // login with email
+    loginUser(email, password)
+      .then((result) => {
+        console.log("login user info: ", result.user);
+      })
+      .catch((error) => {
+        console.log("login with email has an error", error);
+      });
+
     clearingInputs();
   };
 
@@ -115,7 +127,9 @@ const Login = () => {
           </div>
           <p className="text-[#D1A054] text-center my-2">
             Did&#39;t have an Account? Please{" "}
-            <span className="hover:text-blue-500">Register</span>
+            <span className="hover:text-blue-500">
+              <Link to="/register">Register</Link>
+            </span>
           </p>
           <div className="flex flex-col justify-center items-center">
             <div className="flex justify-center items-center">
@@ -130,4 +144,3 @@ const Login = () => {
 };
 
 export default Login;
-
