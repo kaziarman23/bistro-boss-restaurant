@@ -10,7 +10,6 @@ const Header = () => {
   const navigate = useNavigate();
   const [cart] = UseCart();
 
-  
   const navlinks = (
     <>
       <li className="p-2 font-bold text-base">
@@ -29,7 +28,7 @@ const Header = () => {
         <Link to="/shop/salad">our shop</Link>
       </li>
       <li className=" font-bold text-base">
-        <Link to="/shoping">
+        <Link to="/dashboard/cart">
           <button className="btn">
             <FaCartShopping />
             <div className="badge badge-secondary">+{cart.length}</div>

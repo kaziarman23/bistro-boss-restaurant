@@ -46,8 +46,8 @@ const UseFoodCard = ({ item }) => {
               showConfirmButton: false,
               timer: 2500,
             });
-            
-            // this is for rendering the cart items number 
+
+            // this is for rendering the cart items number
             refetch();
           }
         })

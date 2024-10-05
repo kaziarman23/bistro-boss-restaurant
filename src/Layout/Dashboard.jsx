@@ -1,11 +1,14 @@
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaShoppingBag } from "react-icons/fa";
 import {
   FaCalendar,
   FaCalendarPlus,
   FaCartShopping,
+  FaMessage,
   FaMoneyBill,
 } from "react-icons/fa6";
+import { IoMenu } from "react-icons/io5";
 import { MdReviews } from "react-icons/md";
+import { RiHomeGearFill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -15,7 +18,7 @@ const Dashboard = () => {
         <ul className="menu">
           <li>
             <NavLink to="/dashboard/userHome">
-              <FaHome></FaHome>
+              <RiHomeGearFill />
               User Home
             </NavLink>
           </li>
@@ -47,6 +50,31 @@ const Dashboard = () => {
             <NavLink to="/dashboard/booking">
               <FaCalendarPlus></FaCalendarPlus>
               Add Booking
+            </NavLink>
+          </li>
+          <div className="divider"></div>
+          <li>
+            <NavLink to="/">
+              <FaHome></FaHome>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/menu">
+              <IoMenu />
+              Menu
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/shop">
+              <FaShoppingBag />
+              Menu
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact">
+              <FaMessage />
+              Contact
             </NavLink>
           </li>
         </ul>
