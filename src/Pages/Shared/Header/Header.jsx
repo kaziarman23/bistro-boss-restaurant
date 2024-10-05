@@ -3,11 +3,14 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { FaCartShopping } from "react-icons/fa6";
+import UseCart from "../Cart/UseCart";
 
 const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [cart] = UseCart();
 
+  
   const navlinks = (
     <>
       <li className="p-2 font-bold text-base">
@@ -29,7 +32,7 @@ const Header = () => {
         <Link to="/shoping">
           <button className="btn">
             <FaCartShopping />
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+{cart.length}</div>
           </button>
         </Link>
       </li>

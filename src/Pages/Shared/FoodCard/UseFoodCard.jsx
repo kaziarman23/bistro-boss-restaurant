@@ -4,16 +4,18 @@ import UseBorderBottomBtn from "../BoderBottomBtn/UseBorderBottomBtn";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router";
-import axios from "axios";
+import useAxiosSecure from "../AxiosSecure/useAxiosSecure";
+import UseCart from "../Cart/UseCart";
 
 const UseFoodCard = ({ item }) => {
   const { user, loading } = useContext(AuthContext);
+  const [, refetch] = UseCart();
+
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
 
-  const handleCart = (food) => {
-    console.log(food, user.email);
-
+  const handleCart = () => {
     if (loading) {
       return (
         <div className="w-full h-screen flex justify-center items-center">
@@ -32,8 +34,8 @@ const UseFoodCard = ({ item }) => {
       };
 
       // sending oder in the backend
-      axios
-        .post("http://localhost:5000/carts", itemCarts)
+      axiosSecure
+        .post("/carts", itemCarts)
         .then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {
@@ -44,6 +46,9 @@ const UseFoodCard = ({ item }) => {
               showConfirmButton: false,
               timer: 2500,
             });
+            
+            // this is for rendering the cart items number 
+            refetch();
           }
         })
         .catch((error) => console.log(error));
@@ -81,7 +86,7 @@ const UseFoodCard = ({ item }) => {
         <p>{item.recipe}</p>
         <div className="card-actions justify-center">
           <UseBorderBottomBtn
-            onClick={() => handleCart(item)}
+            onClick={handleCart}
             borderBColor="border-[#BB8506]"
             textColor="text-[#BB8506]"
             hoverText="text-[#BB8506]"
