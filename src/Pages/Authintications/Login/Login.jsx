@@ -133,12 +133,13 @@ const Login = () => {
                 placeholder="Type the text"
                 onChange={handleCapchat}
                 className="input input-bordered"
-                required
+                // required
               />
             </div>
             <div className="form-control mt-6">
               <input
-                disabled={disabled}
+              // TODO : have to fix this capchat
+                // disabled={disabled}
                 type="submit"
                 value="Login"
                 className="btn text-white bg-[#D1A054]"

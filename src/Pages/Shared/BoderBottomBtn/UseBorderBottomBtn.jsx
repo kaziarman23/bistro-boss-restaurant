@@ -1,15 +1,16 @@
 /* eslint-disable react/prop-types */
 
-
 const UseBorderBottomBtn = ({
   children,
   borderBColor,
   textColor,
   hoverBg,
   hoverText,
+  onClick,
 }) => {
   return (
     <button
+      onClick={onClick}
       className={`
         uppercase rounded-xl p-2 border-b-2 transition hover:border-none
         ${borderBColor ? borderBColor : "border-black"} 

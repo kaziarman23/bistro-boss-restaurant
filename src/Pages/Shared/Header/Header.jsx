@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import { FaCartShopping } from "react-icons/fa6";
 
 const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
@@ -24,6 +25,14 @@ const Header = () => {
       <li className="p-2 font-bold text-base">
         <Link to="/shop/salad">our shop</Link>
       </li>
+      <li className=" font-bold text-base">
+        <Link to="/shoping">
+          <button className="btn">
+            <FaCartShopping />
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </Link>
+      </li>
       {user ? (
         <li
           onClick={() => handleLogout()}
@@ -32,7 +41,9 @@ const Header = () => {
           Logout
         </li>
       ) : (
-        <li className="p-2 font-bold text-base mt-2 cursor-pointer">Login</li>
+        <li className="p-2 font-bold text-base">
+          <Link to="/login">Login</Link>
+        </li>
       )}
     </>
   );
