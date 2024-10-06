@@ -6,10 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import UseAxiosPublic from "../../Shared/AxiosSecurePublic/UseAxiosPublic";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Register = () => {
   const { createUser, updatingUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosPublic = UseAxiosPublic();
 
   const {
     register,
@@ -19,31 +22,36 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-
     // creatinguser with email
     createUser(data.email, data.password)
-      .then((result) => {
-        console.log("new user info: ", result.user);
+      .then(() => {
         updatingUser(data.name)
           .then(() => {
-            reset();
-            navigate("/");
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              if (res.data.insertedId) {
+                reset();
+                navigate("/");
 
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Register successfull",
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                  },
+                });
+                Toast.fire({
+                  icon: "success",
+                  title: "Register successfull",
+                });
+              }
             });
           })
           .catch((error) => console.log(error));
@@ -169,7 +177,9 @@ const Register = () => {
               <div className="flex justify-center items-center">
                 or register with
               </div>
-              <div>{/* icons */}</div>
+              <div>
+                <SocialLogin />
+              </div>
             </div>
           </form>
         </div>

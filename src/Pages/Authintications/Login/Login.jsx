@@ -10,6 +10,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -138,7 +139,7 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               <input
-              // TODO : have to fix this capchat
+                // TODO : have to fix this capchat
                 // disabled={disabled}
                 type="submit"
                 value="Login"
@@ -155,7 +156,9 @@ const Login = () => {
               <div className="flex justify-center items-center">
                 or login with
               </div>
-              <div>{/* icons */}</div>
+              <div>
+                <SocialLogin />
+              </div>
             </div>
           </form>
         </div>
