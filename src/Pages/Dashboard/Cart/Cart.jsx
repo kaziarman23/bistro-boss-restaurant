@@ -36,8 +36,11 @@ const Cart = () => {
 
   return (
     <div className="">
-      <SectionTitle heading="wanna add more?" subHeading="---MY CART---" />
 
+      {/* section title */}
+      <SectionTitle heading="wanna add more?" subHeading="---MY CART---" />
+      
+      {/* form content */}
       <div className="mt-10">
         <div className="overflow-x-auto">
           <div className="flex justify-evenly items-center font-bold text-2xl">
