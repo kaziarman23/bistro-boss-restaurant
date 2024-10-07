@@ -12,9 +12,10 @@ import { IoMenu } from "react-icons/io5";
 import { MdHomeWork, MdReviews } from "react-icons/md";
 import { RiHomeGearFill } from "react-icons/ri";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import UseAdmin from "../Pages/Shared/IsAdmin/UseAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = UseAdmin();
 
   return (
     <div className="flex h-screen">
@@ -24,7 +25,7 @@ const Dashboard = () => {
             <h2 className="text-3xl p-5 font-bold">
               Bistro Boss <br />
               <span>Restuarant</span>
-            </h2 >
+            </h2>
           </Link>
         </div>
         <ul className="menu">

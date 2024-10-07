@@ -77,7 +77,6 @@ const AllUsers = () => {
           <h1 className="text-left text-2xl ml-5 mb-5 font-bold">
             Total Users: {users.length}
           </h1>
-          {/* <h1>Total Price: ${totalPrice}</h1> */}
           <table className="table table-zebra">
             <thead>
               <tr>

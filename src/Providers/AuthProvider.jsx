@@ -11,6 +11,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import UseAxiosPublic from "../Pages/Shared/AxiosSecurePublic/UseAxiosPublic";
 
 export const AuthContext = createContext(null);
 
@@ -18,8 +19,10 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const axiosPublic = UseAxiosPublic();
+
   // providers
-  const googleProvider = new GoogleAuthProvider()
+  const googleProvider = new GoogleAuthProvider();
 
   // Email based authintication
   // Creating user with email
@@ -42,9 +45,9 @@ const AuthProvider = ({ children }) => {
 
   // Google based authintication
   const createUserWithGoogle = () => {
-    setLoading(true)
-    return signInWithPopup(auth, googleProvider)
-  }
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
 
   // Logout user
   const logoutUser = () => {
@@ -59,13 +62,25 @@ const AuthProvider = ({ children }) => {
     updatingUser,
     loginUser,
     logoutUser,
-    createUserWithGoogle
+    createUserWithGoogle,
   };
 
   useEffect(() => {
     const onSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
       setUser(currentUser);
+      console.log(currentUser);
+
+      // giving token for users
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+      }
       setLoading(false);
     });
 
