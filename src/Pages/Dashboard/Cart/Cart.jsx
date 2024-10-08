@@ -3,6 +3,7 @@ import UseCart from "../../Shared/Cart/UseCart";
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Shared/AxiosSecure/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = UseCart();
@@ -36,19 +37,29 @@ const Cart = () => {
 
   return (
     <div className="">
-
       {/* section title */}
       <SectionTitle heading="wanna add more?" subHeading="---MY CART---" />
-      
+
       {/* form content */}
       <div className="mt-10">
         <div className="overflow-x-auto">
           <div className="flex justify-evenly items-center font-bold text-2xl">
             <h1>Total Order: {cart.length}</h1>
             <h1>Total Price: ${totalPrice}</h1>
-            <button className="px-4 py-2 rounded-xl bg-orgGold text-white">
-              Pay
-            </button>
+            {cart.length ? (
+              <Link to="/dashboard/payment">
+                <button className="px-4 py-2 rounded-xl bg-orgGold text-white">
+                  Pay
+                </button>
+              </Link>
+            ) : (
+              <button
+                disabled
+                className="px-4 py-2 rounded-xl bg-orgGold text-white"
+              >
+                Pay
+              </button>
+            )}
           </div>
           <table className="table">
             {/* head */}

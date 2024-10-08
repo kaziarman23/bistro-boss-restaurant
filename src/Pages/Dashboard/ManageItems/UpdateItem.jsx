@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 const UpdateItem = () => {
   const { name, category, price, recipe, image, _id } = useLoaderData();
 
+  // another option - we can use useEffect then we will use useParams to store the item id then we will match the item id with all menu items. then we will get the wanted items props 
+
   // base-url
   const axiosPublic = UseAxiosPublic();
   const axiosSecure = useAxiosSecure();
