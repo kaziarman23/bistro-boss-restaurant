@@ -13,9 +13,12 @@ import { MdHomeWork, MdReviews } from "react-icons/md";
 import { RiHomeGearFill } from "react-icons/ri";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import UseAdmin from "../Pages/Shared/IsAdmin/UseAdmin";
+import UseCart from "../Pages/Shared/Cart/UseCart";
 
 const Dashboard = () => {
+  // hooks
   const [isAdmin] = UseAdmin();
+  const [cart] = UseCart();
 
   return (
     <div className="flex h-screen">
@@ -77,7 +80,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/payment">
+                <NavLink to="/dashboard/paymentHistory">
                   <FaMoneyBill></FaMoneyBill>
                   Payment History
                 </NavLink>
@@ -85,7 +88,7 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/cart">
                   <FaCartShopping></FaCartShopping>
-                  My Cart
+                  My Cart ({cart.length})
                 </NavLink>
               </li>
               <li>

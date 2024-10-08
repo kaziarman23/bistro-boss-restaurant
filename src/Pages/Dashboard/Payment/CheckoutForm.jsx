@@ -3,13 +3,16 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../Shared/AxiosSecure/useAxiosSecure";
 import UseCart from "../../Shared/Cart/UseCart";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const CheckoutForm = () => {
   // states
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [cart] = UseCart();
+  const [cart, refetch] = UseCart();
   const [transactionId, setTransactionId] = useState("");
+  const navigate = useNavigate();
 
   // hooks
   const axiosSecure = useAxiosSecure();
@@ -23,12 +26,14 @@ const CheckoutForm = () => {
   const elements = useElements();
 
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        // console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          // console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (e) => {
@@ -74,8 +79,40 @@ const CheckoutForm = () => {
     } else {
       console.log("payment intent: ", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log("transaction id: ", paymentIntent.id);
+        // console.log("transaction id: ", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transcationId: paymentIntent.id,
+          date: new Date(),
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuId),
+          status: "panding",
+        };
+
+        const res = await axiosSecure.post("/payments", payment);
+        refetch();
+        console.log("deletedCount :",res.data);
+        if (res.data?.paymentResult?.insertedId) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Payment Successfull",
+          });
+          navigate("/dashboard/paymentHistory");
+        }
       }
     }
   };

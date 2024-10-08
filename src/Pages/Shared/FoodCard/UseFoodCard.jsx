@@ -44,7 +44,7 @@ const UseFoodCard = ({ item }) => {
               icon: "success",
               title: `${item.name} added to you'r cart`,
               showConfirmButton: false,
-              timer: 2500,
+              timer: 1500,
             });
 
             // this is for rendering the cart items number
