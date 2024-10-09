@@ -24,5 +24,3 @@ export default {
     ],
   },
 };
-
-// ignore es-lint error :  /*eslint-disable react/prop-types */
