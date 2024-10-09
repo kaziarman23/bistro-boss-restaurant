@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const { loginUser } = useContext(AuthContext);
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://bistro-boss-restaurant-server-beta-lac.vercel.app",
   });
 
   // sending tokens in the backend, because in localstorage we have to send the tokens. If we ware using https only then we did't had to send it to the backend, it had done it automatically. And we are using interceptors to do the headers part for every api call's
